@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CRUD APP</title>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-gray-100">
+    <!-- Navigation Bar -->
+    <nav class="bg-blue-500 p-4">
+      <div class="container mx-auto flex justify-between items-center">
+        <a href="/" class="text-white font-bold text-xl">CRUD App</a>
+        <div class="flex space-x-4">
+          <a href="/" class="text-white hover:text-gray-200">Create</a>
+          <a href="#" class="text-white hover:text-gray-200">About</a>
+          <a href="#" class="text-white hover:text-gray-200">Contact</a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="w-full h-full bg-zinc-900 p-10 text-white">
+      <h1 class="text-3xl tracking-tighter mb-3">All Users</h1>
+      <div
+        class="users grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-8"
+      >
+        <% if(users.length>0){%> <% users.forEach(function(user){%>
+        <div class="user w-72 p-4 bg-zinc-800 rounded-lg">
+          <div
+            class="w-full overflow-hidden shadow-lg flex justify-center items-center h-72 bg-zinc-700 rounded-lg"
+          >
+            <img
+              class="w-full h-full object-cover object-top"
+              src="<%= user.imageUrl %>"
+              alt=""
+            />
+          </div>
+          <h3 class="text-xl mt-3 tracking-tighter"><%= user.name %></h3>
+          <h5 class="text-zinc-500"><%= user.email %></h5>
+          <div class="flex gap-3 justify-between p-1">
+            <a
+              class="text-white p-2 bg-green-500 rounded-lg hover:bg-green-600"
+              href="/edit/<%= user._id %>"
+              >Edit User</a
+            >
+            <a
+              class="rounded-lg p-2 bg-red-500 text-black hover:bg-red-600"
+              href="/delete/<%= user._id %>"
+              >Delete User</a
+            >
+          </div>
+        </div>
+
+        <%}) %> <%}else{%>
+        <h1 class="text-zinc-500 text-3xl">No Users Yet</h1>
+        <%} %>
+      </div>
+    </div>
+  </body>
+</html>
